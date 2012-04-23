@@ -4,12 +4,12 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "opengraph"
+    gem.name = "ging-opengraph"
     gem.summary = %Q{A very simple Ruby library for parsing Open Graph prototocol information from websites.}
     gem.description = %Q{A very simple Ruby library for parsing Open Graph prototocol information from websites. See http://opengraphprotocol.org for more information.}
-    gem.email = "michael@intridea.com"
-    gem.homepage = "http://github.com/intridea/opengraph"
-    gem.authors = ["Michael Bleigh"]
+    gem.email = "social-stream@dit.upm.es"
+    gem.homepage = "http://github.com/ging/opengraph"
+    gem.authors = ["Michael Bleigh", "Matt Wilson"]
     gem.add_dependency 'hashie'
     gem.add_dependency 'nokogiri', '~> 1.5.0'
     gem.add_dependency 'rest-client', '~> 1.6.0'
