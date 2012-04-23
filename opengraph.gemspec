@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{opengraph}
-  s.version = "0.0.4"
+  s.name = %q{ging-opengraph}
+  s.version = "0.0.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Michael Bleigh"]
+  s.authors = ["Michael Bleigh", "Matt Wilson"]
   s.date = %q{2010-11-04}
   s.description = %q{A very simple Ruby library for parsing Open Graph prototocol information from websites. See http://opengraphprotocol.org for more information.}
-  s.email = %q{michael@intridea.com}
+  s.email = %q{social-stream@dit.upm.es}
   s.extra_rdoc_files = [
     "LICENSE",
      "README.rdoc"
