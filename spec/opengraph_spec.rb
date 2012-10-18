@@ -1,3 +1,4 @@
+# coding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 describe OpenGraph do
@@ -40,6 +41,7 @@ end
 
 describe OpenGraph::Object do
   let(:rotten){ File.open(File.dirname(__FILE__) + '/examples/rottentomatoes.html')}
+  let(:tab){ File.open(File.dirname(__FILE__) + '/examples/tab.html').read }
   
   context ' a Rotten Tomatoes Movie' do
     subject{ OpenGraph.parse(rotten) }
@@ -65,5 +67,14 @@ describe OpenGraph::Object do
       subject['type'] = nil
       subject.should_not be_valid
     end
+  end
+
+  context 'tab' do
+    subject{ OpenGraph.parse(tab) }
+
+    its(['tab:place:name']) { should == '頓智ドット' }
+    its(['tab:place:address']) { should == '東京都渋谷区渋谷1-11-1 COI 西青山ビル7F' }
+    its(['tab:place:latitude']) { should == '35.661104' }
+    its(['tab:place:longitude']) { should == '139.704424' }
   end
 end

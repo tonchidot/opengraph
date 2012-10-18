@@ -19,8 +19,10 @@ module OpenGraph
     doc = Nokogiri::HTML.parse(html)
     page = OpenGraph::Object.new
     doc.css('meta').each do |m|
-      if m.attribute('property') && m.attribute('property').to_s.match(/^og:(.+)$/i)
-        page[$1.gsub('-','_')] = m.attribute('content').to_s
+      if m.attribute('property') && m.attribute('property').to_s.match(/^(og|tab):(.+)$/i)
+        pref = $1 == 'tab' ? 'tab:' : ''
+        key = $2.gsub('-','_')
+        page["#{pref}#{key}"] = m.attribute('content').to_s
       end
     end
     return false if page.keys.empty?
