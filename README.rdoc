@@ -26,6 +26,17 @@ built into it, so you can examine what properties you've retrieved like so:
 
     movie.keys # => ['type','image','title','url']
 
+== Usage(tab)
+
+    require 'opengraph'
+    
+    obj = OpenGraph.fetch('https://raw.github.com/tonchidot/opengraph/master/spec/examples/tab.html')
+    
+    obj['tab:place:name'] # => '頓智ドット'
+    obj['tab:place:address'] # => '東京都渋谷区渋谷1-11-1 COI 西青山ビル7F'
+    obj['tab:place:latitude'] # => '35.661104'
+    obj['tab:place:longitude'] # => '139.704424'
+    
 == Note on Patches/Pull Requests
  
 * Fork the project.
