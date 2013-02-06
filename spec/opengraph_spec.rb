@@ -24,6 +24,7 @@ describe OpenGraph do
   end
   
   describe '.fetch' do
+
     it 'should fetch from the specified URL' do
       stub_request(:get, 'http://www.rottentomatoes.com/m/1217700-kick_ass/').to_return(:body => rotten)
       OpenGraph.fetch('http://www.rottentomatoes.com/m/1217700-kick_ass/').title.should == 'Kick-Ass'
@@ -33,8 +34,19 @@ describe OpenGraph do
     it 'should catch errors' do
       stub_request(:get, 'http://example.com').to_return(:status => 404)
       OpenGraph.fetch('http://example.com').should be_false
-      RestClient.should_receive(:get).with('http://example.com').and_raise(SocketError)
+      OpenGraph.should_receive(:open).with('http://example.com').and_raise(SocketError)
       OpenGraph.fetch('http://example.com').should be_false
+    end
+
+    describe 'encoding' do
+      let(:uri) { 'http://example.com/non-utf-8.html' }
+      let(:non_utf8){ File.open(File.dirname(__FILE__) + '/examples/tab-euc-jp.html').read }
+      before do
+        stub_request(:get, uri).to_return(:headers => { 'Content-Type' => 'text/html; charset=EUC-JP' }, :body => non_utf8)
+      end
+      it 'should return utf-8 string even non utf-8' do
+        OpenGraph.fetch(uri).title.should == 'STARTER Kit - THE COFFEESHOP（ザ・コーヒーショップ）／ONLINE STORE（オンラインストア）'
+      end
     end
   end
 end
